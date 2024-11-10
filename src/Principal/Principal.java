@@ -22,6 +22,7 @@ public class Principal {
                 System.out.println("Ingrese los USD que desea convertir a ARS");
                 float cantidad = lectura.nextFloat();
 
+
             }
             else if (menu == 2) {
                 System.out.println("Ingrese los ARS que desea convertir a USD");

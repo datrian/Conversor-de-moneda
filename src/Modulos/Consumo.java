@@ -10,9 +10,10 @@ import java.net.http.HttpResponse;
 import java.util.Scanner;
 
 public class Consumo extends Principal {
-    String direccion = "https://v6.exchangerate-api.com/v6/58cbb2a8c751180d6f5aa453/latest/USD"; // Agregar la moneda deseada
+
 
     public void realizarPeticion() {
+        String direccion = "https://v6.exchangerate-api.com/v6/58cbb2a8c751180d6f5aa453/latest/" ; //+ currency
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
@@ -23,13 +24,10 @@ public class Consumo extends Principal {
 
             String json = response.body();
             Gson gson = new Gson();
-            Principal moneda = gson.fromJson(json, Moneda.class);
+            Moneda moneda = gson.fromJson(json, Moneda.class);
+// La sig linea deberá imprimir el valor deseado:
+//            System.out.println("Tasa de cambio para " + baseCurrency + ": " + moneda.getConversion_rates());
 
-            System.out.println(json);
-
-
-            // String json = response.body();
-            // System.out.println("Respuesta del servidor: " + json);
 
         } catch (IOException | InterruptedException e) {
             System.out.println("Ocurrió un error al realizar la petición HTTP: ");
