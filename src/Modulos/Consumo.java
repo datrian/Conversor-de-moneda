@@ -12,12 +12,39 @@ import java.util.Scanner;
 public class Consumo extends Principal {
     private Moneda currency;
 
-    public  Consumo(Moneda currency){
+    public  Consumo(Moneda currency) throws IOException, InterruptedException {
         this.currency = currency;
     }
 
     public void mostrarMoneda(){
         System.out.println("La moneda es: " + currency.getCurrency());
         System.out.println("Ingresó la cantidad de: " + currency.getMonto());
+
+        // Dirección de la API
+        String direccion = "https://v6.exchangerate-api.com/v6/58cbb2a8c751180d6f5aa453/latest/" + currency.getCurrency();
+
+        // Llama a la API
+        try{
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(direccion))
+                    .build();
+            HttpResponse<String> response = client
+                    .send(request, HttpResponse.BodyHandlers.ofString());
+
+            // Almacena la respuesta de la API
+            String json = response.body();
+            System.out.println(json);
+
+        }catch (NumberFormatException | IOException | InterruptedException e){
+            System.out.println("Ocurrió un error: ");
+            System.out.println(e.getMessage());
+        }
+
+
     }
+
+
+
+
 }

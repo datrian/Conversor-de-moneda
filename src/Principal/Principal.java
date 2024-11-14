@@ -2,10 +2,11 @@ package Principal;
 import Modulos.Consumo;
 import Modulos.Moneda;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Principal {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         while (true){
             Scanner lectura = new Scanner(System.in);
             System.out.println("*--- Conversor de monedas ---*");
@@ -25,7 +26,7 @@ public class Principal {
                 Moneda miCurrency = new Moneda("USD", cantidad);
                 // Creamos una instancia en la clase Consumo para pasarle los valores de "miCurrency"
                 Consumo consumo = new Consumo(miCurrency);
-                
+
                 consumo.mostrarMoneda();
             }
             else if (menu == 2) {
