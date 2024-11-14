@@ -23,7 +23,10 @@ public class Principal {
                 System.out.println("Ingrese los USD que desea convertir a ARS");
                 double cantidad = lectura.nextFloat();
                 Moneda miCurrency = new Moneda("USD", cantidad);
-
+                // Creamos una instancia en la clase Consumo para pasarle los valores de "miCurrency"
+                Consumo consumo = new Consumo(miCurrency);
+                
+                consumo.mostrarMoneda();
             }
             else if (menu == 2) {
                 System.out.println("Ingrese los ARS que desea convertir a USD");
