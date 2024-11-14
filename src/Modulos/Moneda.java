@@ -1,26 +1,30 @@
 package Modulos;
 
-import java.util.Map;
+public class Moneda{
+    private String currency;
+    private double monto;
 
-public class Moneda {
-    private String base_code;
-    private Map<String, Double> conversion_rates;
+    // Creo que esto es el constructor
+    public Moneda(String currency, double monto){
+        this.currency = currency;
+        this.monto = monto;
+    }
 
     // Getters
-    public String getBase_code() {
-        return base_code;
+    public String getCurrency(){
+        return currency;
     }
 
-    public Map<String, Double> getConversion_rates() {
-        return conversion_rates;
+    public double getMonto(){
+        return monto;
     }
 
-    //Setters
-    public void setBase_code(String base_code) {
-        this.base_code = base_code;
+    // Setters
+    public void setCurrency(String currency){
+        this.currency = currency;
     }
 
-    public void setConversion_rates(Map<String, Double> conversion_rates) {
-        this.conversion_rates = conversion_rates;
+    public void  setMonto(double monto){
+        this.monto = monto;
     }
 }

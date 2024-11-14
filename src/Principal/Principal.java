@@ -1,10 +1,11 @@
 package Principal;
 import Modulos.Consumo;
+import Modulos.Moneda;
+
 import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-
         while (true){
             Scanner lectura = new Scanner(System.in);
             System.out.println("*--- Conversor de monedas ---*");
@@ -20,8 +21,8 @@ public class Principal {
 
             if (menu == 1){
                 System.out.println("Ingrese los USD que desea convertir a ARS");
-                float cantidad = lectura.nextFloat();
-
+                double cantidad = lectura.nextFloat();
+                Moneda miCurrency = new Moneda("USD", cantidad);
 
             }
             else if (menu == 2) {
