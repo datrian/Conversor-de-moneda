@@ -17,8 +17,8 @@ public class Consumo extends Principal {
     }
 
     public void mostrarMoneda(){
-        System.out.println("La moneda es: " + currency.getCurrency());
-        System.out.println("Ingresó la cantidad de: " + currency.getMonto());
+        //System.out.println("La moneda es: " + currency.getCurrency());
+        //System.out.println("Ingresó la cantidad de: " + currency.getMonto());
 
         // Dirección de la API
         String direccion = "https://v6.exchangerate-api.com/v6/58cbb2a8c751180d6f5aa453/latest/" + currency.getCurrency();
@@ -41,10 +41,20 @@ public class Consumo extends Principal {
 
             // Acceso al objeto "conversion_rates"
             JsonObject conversionRates = jsonObject.getAsJsonObject("conversion_rates");
-            String conversion = conversionRates.get("MXN").getAsString();
+            String conversion = conversionRates.get(currency.getCurrencyFinal()).getAsString();
 
             // Muestra la conversión
-            System.out.println("Conversión: " + conversion);
+            //System.out.println("\nUn " + currency.getCurrency() + " equivale a: " + conversion + " " + currency.getCurrencyFinal());
+
+            // Castea a double
+            double conversionDouble = Double.parseDouble(conversion);
+
+            double equivalencia = conversionDouble * currency.getMonto();
+            if (currency.getMonto() == 1){
+                System.out.println("\nUn " + currency.getCurrency() + " es igual a " + equivalencia + " " + currency.getCurrencyFinal());
+            } else {
+                System.out.println("\n" + currency.getMonto() + " " + currency.getCurrency() +" son iguales a " + equivalencia + " " + currency.getCurrencyFinal());
+            }
 
         }catch (NumberFormatException | IOException | InterruptedException e){
             System.out.println("Ocurrió un error: ");
