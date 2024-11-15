@@ -1,7 +1,9 @@
 package Modulos;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Moneda{
-    private String currency;
+   private String currency;
     private double monto;
 
     // Creo que esto es el constructor

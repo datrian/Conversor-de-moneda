@@ -1,6 +1,6 @@
 package Modulos;
 import Principal.Principal;
-import com.google.gson.Gson;
+import com.google.gson.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Consumo extends Principal {
     private Moneda currency;
 
-    public  Consumo(Moneda currency) throws IOException, InterruptedException {
+    public Consumo(Moneda currency) throws IOException, InterruptedException {
         this.currency = currency;
     }
 
@@ -34,7 +34,17 @@ public class Consumo extends Principal {
 
             // Almacena la respuesta de la API
             String json = response.body();
-            System.out.println(json);
+            //System.out.println(json);
+
+            // Parseo del JSON
+            JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
+            // Acceso al objeto "conversion_rates"
+            JsonObject conversionRates = jsonObject.getAsJsonObject("conversion_rates");
+            String conversion = conversionRates.get("MXN").getAsString();
+
+            // Muestra la conversión
+            System.out.println("Conversión: " + conversion);
 
         }catch (NumberFormatException | IOException | InterruptedException e){
             System.out.println("Ocurrió un error: ");
